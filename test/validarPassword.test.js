@@ -45,3 +45,9 @@ test("Una contrasenia sin simbolos especiales debe ser invalida", ()=> {
     expect(resultado.esValida).toBe(false);
     expect(resultado.errores).toContain('Debe contener al menos un simbolo especial');
 });
+
+test("Una contrasenia con esapcios blancos debe ser invalida", ()=> {
+    const resultado=validarPassword("Abcd efg1!");
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('No debe contener espacios en blanco');
+});
