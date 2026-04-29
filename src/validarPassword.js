@@ -1,5 +1,14 @@
 const LONGITUD_MINIMA = 8;
 
+    function tresCaracteresConsec(password){
+        for(let i=0; i<password.length-2; i++){
+            if (password[i] === password[i + 1] && password[i + 1] === password[i + 2]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 const reglas = [
     {
         cumple: (password) => password.length >= LONGITUD_MINIMA,
@@ -28,6 +37,10 @@ const reglas = [
     {
         cumple: (password, username) => !username || !password.toLowerCase().includes(username),
         mensajeError: 'La contrasenia no debe contener el nombre de usuario'
+    },
+    {
+        cumple: (password) => !tresCaracteresConsec(password),
+        mensajeError: 'No debe contener 3 caracteres iguales consecutivos'
     },
 ];
 
