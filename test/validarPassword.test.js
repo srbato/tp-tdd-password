@@ -63,3 +63,9 @@ test('una contrasenia que contiene el username con distinta capitalización debe
     expect(resultado.esValida).toBe(false);
     expect(resultado.errores).toContain('La contrasenia no debe contener el nombre de usuario');
 });
+
+test('una contrasenia con 3 caracteres iguales consecutivos debe ser invalida', () => {
+    const resultado = validarPassword('Abccc123!', 'usuario');
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('No debe contener 3 caracteres iguales consecutivos');
+});
