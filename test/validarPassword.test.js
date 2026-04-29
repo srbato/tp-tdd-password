@@ -11,3 +11,8 @@ test("Una contrasenia con menos de 8 caracteres debe ser invalida", ()=> {
         expect(resultado.esValida).toBe(false);
 
 });
+
+test("debe incluir el mensaje 'Debe tener al menos 8 caracteres' cuando la contraseña es cortar ", ()=> {
+    const resultado=validarPassword("ABC123");
+    expect(resultado.errores).toContain("Debe tener al menos 8 caracteres");
+});
