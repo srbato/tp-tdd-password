@@ -19,6 +19,10 @@ function validarPassword(password) {
         errores.push('Debe contener al menos un numero');
     }
 
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+        errores.push('Debe contener al menos un simbolo especial');
+    }
+
     return {
         esValida: errores.length === 0,
         errores
