@@ -1,14 +1,16 @@
-function validarPassword(password){
-    const errores=[]
+const LONGITUD_MINIMA = 8;
 
-    if(password.length<8){
-        errores.push("La contrasenia debe tener al menos 8 caracteres")
+function validarPassword(password) {
+    const errores = [];
+
+    if (password.length < LONGITUD_MINIMA) {
+        errores.push('Debe tener al menos 8 caracteres');
     }
 
-    return{
+    return {
         esValida: errores.length === 0,
         errores
     };
 }
 
-module.exports=validarPassword;
+module.exports = validarPassword;
