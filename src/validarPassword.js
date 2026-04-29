@@ -26,7 +26,7 @@ const reglas = [
         mensajeError: 'No debe contener espacios en blanco'
     },
     {
-        cumple: (password, username) => !username || !password.includes(username),
+        cumple: (password, username) => !username || !password.toLowerCase().includes(username),
         mensajeError: 'La contrasenia no debe contener el nombre de usuario'
     },
 ];
