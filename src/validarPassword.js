@@ -25,11 +25,15 @@ const reglas = [
         cumple: (password) => !/[\s]/.test(password),
         mensajeError: 'No debe contener espacios en blanco'
     },
+    {
+        cumple: (password, username) => !username || !password.includes(username),
+        mensajeError: 'La contrasenia no debe contener el nombre de usuario'
+    },
 ];
 
-function validarPassword(password) {
+function validarPassword(password, username) {
     const errores = reglas
-        .filter(regla => !regla.cumple(password))
+        .filter(regla => !regla.cumple(password, username))
         .map(regla => regla.mensajeError);
 
     return {
