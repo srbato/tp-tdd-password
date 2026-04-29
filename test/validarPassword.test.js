@@ -69,3 +69,9 @@ test('una contrasenia con 3 caracteres iguales consecutivos debe ser invalida', 
     expect(resultado.esValida).toBe(false);
     expect(resultado.errores).toContain('No debe contener 3 caracteres iguales consecutivos');
 });
+
+test('una contrasenia que cumple todas las reglas debe ser valida', () => {
+    const resultado = validarPassword('Battini2025!', 'otroUsuario');
+    expect(resultado.esValida).toBe(true);
+    expect(resultado.errores).toEqual([]);
+});
