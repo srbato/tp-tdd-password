@@ -39,3 +39,9 @@ test("Una contrasenia sin numeros debe ser invalida", ()=> {
     expect(resultado.errores).toContain('Debe contener al menos un numero');
 
 });
+
+test("Una contrasenia sin simbolos especiales debe ser invalida", ()=> {
+    const resultado=validarPassword("Abcdefgh1");
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('Debe contener al menos un simbolo especial');
+});
