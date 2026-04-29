@@ -21,3 +21,8 @@ test("Una contrasenia sin letra mayuscula debe ser invalida", ()=> {
     const resultado=validarPassword("abcde123");
     expect(resultado.esValida).toBe(false);
 });
+
+test("debe incluir el mensaje 'Debe contener al menos una mayúscula' cuando la contraseña es cortar ", ()=> {
+    const resultado=validarPassword("abcde123");
+    expect(resultado.errores).toContain("Debe contener al menos una mayúscula");
+});
