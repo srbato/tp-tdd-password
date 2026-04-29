@@ -26,3 +26,23 @@
 | 13 | `una contraseña con 3 caracteres iguales consecutivos debe ser inválida` — verifica que la función rechace passwords con secuencias como "aaa", "111", "%%%" | `Expected: ['No debe contener 3 caracteres iguales consecutivos'], Received: []` (la función no validaba esto) | Se crea función auxiliar `tieneTresCaracteresIgualesConsecutivos` que itera comparando cada carácter con los dos siguientes. Se agrega regla al array que niega esta función. Decisión de diseño: se usa iteración en lugar de regex por mayor legibilidad | No aplicó (la función auxiliar ya tiene un nombre descriptivo y bajo acoplamiento con el resto) | ✓ una contraseña con 3 caracteres iguales consecutivos debe ser inválida |
 | 14 | `una contraseña que cumple todas las reglas debe ser válida` — verifica explícitamente el camino feliz: password correcta retorna `esValida: true` y `errores: []` | El test pasó directamente: la implementación acumulada de los 13 ciclos previos ya cubría el caso. Sin embargo, se documenta como test de integración necesario para blindar el camino feliz | No se requirió cambio de código | No aplicó | ✓ una contraseña que cumple todas las reglas debe ser válida |
 | 15 | `una contraseña que viola múltiples reglas debe acumular todos los errores correspondientes` — verifica que el array `errores` contenga TODOS los mensajes de las reglas violadas, ni más ni menos | El test pasó directamente: el diseño declarativo del Ciclo 9 (`filter().map()`) ya garantizaba el comportamiento acumulativo. Test crítico para blindar la semántica del array de errores | No se requirió cambio de código | Refactor cosmético: se extrae la regex de símbolos especiales a una constante `SIMBOLOS_ESPECIALES` por simetría con `LONGITUD_MINIMA` y para mejorar legibilidad | ✓ una contraseña que viola múltiples reglas debe acumular todos los errores correspondientes |
+
+
+
+---
+
+## Reflexión breve final
+
+### 1. ¿Qué regla le resultó más compleja y por qué?
+
+La validación de "no contener 3 caracteres iguales consecutivos" fue la más compleja, porque a diferencia de las otras reglas que se podían expresar con una regex simple o un método de string como `.includes()`, esta requería iteración comparando cada carácter con los dos siguientes. Decidí extraerla a una función auxiliar (`tieneTresCaracteresIgualesConsecutivos`).
+
+### 2. ¿En qué momento debió reducir el tamaño de sus iteraciones?
+
+En el Ciclo 11 (validación del parámetro `username`), cuando me di cuenta de que la firma de la función `validarPassword` necesitaba un segundo parámetro y que las funciones `cumple` también tenían que recibirlo. Inicialmente intenté agregar todo de una vez, pero terminé teniendo un error (`ReferenceError: username is not defined`) porque me olvidé de modificar la firma de `validarPassword`. A partir de ese error, fui más cuidadoso al hacer cambios estructurales: primero ajustar la función contenedora, después las internas, verificando con tests en cada paso.
+
+### 3. ¿Qué refactor mejoró más la claridad de su código?
+
+El refactor del Ciclo 9, donde transformé los 5 bloques `if (...) errores.push(...)` repetidos en una estructura declarativa: un array de objetos `{ cumple, mensajeError }` recorrido con `filter().map()`. Con este cambio, se elliminó la duplicación de patrón, se separó el "qué validar" (datos) del "cómo validar" (lógica) e hizo que el codigo sea mas facil de leer
+
+Fue además el refactor que más me hizo apreciar el valor de tener tests: los 8 tests existentes me dieron la confianza de reescribir toda la estructura interna sin romper el comportamiento.
