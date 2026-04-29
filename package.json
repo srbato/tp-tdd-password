@@ -1,0 +1,17 @@
+{
+  "name": "tp-tdd-password",
+  "version": "1.0.0",
+  "description": "Validador de contraseñas desarrollado con TDD",
+  "main": "src/validarPassword.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": ["tdd", "jest", "validacion", "password"],
+  "author": "Santiago Rodriguez Battini",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
