@@ -20,7 +20,11 @@ const reglas = [
     {
         cumple: (password) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password),
         mensajeError: 'Debe contener al menos un simbolo especial'
-    }
+    },
+    {
+        cumple: (password) => !/[\s]/.test(password),
+        mensajeError: 'No debe contener espacios en blanco'
+    },
 ];
 
 function validarPassword(password) {
