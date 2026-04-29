@@ -57,3 +57,9 @@ test('Una contrasenia que contiene el username debe ser invalida', () => {
     expect(resultado.esValida).toBe(false);
     expect(resultado.errores).toContain('La contrasenia no debe contener el nombre de usuario');
 });
+
+test('una contrasenia que contiene el username con distinta capitalización debe ser invalida', () => {
+    const resultado = validarPassword('Battini2025!', 'battini');
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('La contrasenia no debe contener el nombre de usuario');
+});
