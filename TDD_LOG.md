@@ -35,11 +35,11 @@
 
 ### 1. ¿Qué regla le resultó más compleja y por qué?
 
-La validación de "no contener 3 caracteres iguales consecutivos" fue la más compleja, porque a diferencia de las otras reglas que se podían expresar con una regex simple o un método de string como `.includes()`, esta requería iteración comparando cada carácter con los dos siguientes. Decidí extraerla a una función auxiliar (`tieneTresCaracteresIgualesConsecutivos`).
+La validación de "no contener 3 caracteres iguales consecutivos" fue la más compleja, porque a diferencia de las otras reglas que se podían expresar con una regex simple o un método de string como `.includes()`, esta requería iteración comparando cada carácter con los dos siguientes. Decidi extraerla a una función auxiliar (`tieneTresCaracteresIgualesConsecutivos`).
 
 ### 2. ¿En qué momento debió reducir el tamaño de sus iteraciones?
 
-En el Ciclo 11 (validación del parámetro `username`), cuando me di cuenta de que la firma de la función `validarPassword` necesitaba un segundo parámetro y que las funciones `cumple` también tenían que recibirlo. Inicialmente intenté agregar todo de una vez, pero terminé teniendo un error (`ReferenceError: username is not defined`) porque me olvidé de modificar la firma de `validarPassword`. A partir de ese error, fui más cuidadoso al hacer cambios estructurales: primero ajustar la función contenedora, después las internas, verificando con tests en cada paso.
+En el Ciclo 11 (validación del parámetro `username`), cuando me di cuenta de que la firma de la función `validarPassword` necesitaba un segundo parámetro y que las funciones `cumple` también tenían que recibirlo. Inicialmente intenté agregar todo de una vez, pero terminé teniendo un error (`ReferenceError: username is not defined`) porque me olvidé de modificar la firma de `validarPassword`. A partir de ese error, fui mas cuidadoso al hacer cambios estructurales: primero ajustar la función contenedora, despues las internas, verificando con tests en cada paso.
 
 ### 3. ¿Qué refactor mejoró más la claridad de su código?
 
