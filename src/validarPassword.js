@@ -15,6 +15,10 @@ function validarPassword(password) {
         errores.push('Debe contener al menos una minuscula');
     }
 
+    if (!/[0-9]/.test(password)) {
+        errores.push('Debe contener al menos un numero');
+    }
+
     return {
         esValida: errores.length === 0,
         errores
