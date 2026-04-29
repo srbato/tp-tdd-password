@@ -1,4 +1,5 @@
 const LONGITUD_MINIMA = 8;
+const SIMBOLOS_ESPECIALES = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 
     function tresCaracteresConsec(password){
         for(let i=0; i<password.length-2; i++){
@@ -27,7 +28,7 @@ const reglas = [
         mensajeError: 'Debe contener al menos un numero'
     },
     {
-        cumple: (password) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password),
+        cumple: (password) => SIMBOLOS_ESPECIALES.test(password),
         mensajeError: 'Debe contener al menos un simbolo especial'
     },
     {
