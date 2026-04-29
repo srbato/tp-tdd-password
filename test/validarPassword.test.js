@@ -51,3 +51,9 @@ test("Una contrasenia con esapcios blancos debe ser invalida", ()=> {
     expect(resultado.esValida).toBe(false);
     expect(resultado.errores).toContain('No debe contener espacios en blanco');
 });
+
+test('Una contrasenia que contiene el username debe ser invalida', () => {
+    const resultado = validarPassword('battini2025!', 'battini');
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('La contrasenia no debe contener el nombre de usuario');
+});
