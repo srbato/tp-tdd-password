@@ -16,3 +16,8 @@ test("debe incluir el mensaje 'Debe tener al menos 8 caracteres' cuando la contr
     const resultado=validarPassword("ABC123");
     expect(resultado.errores).toContain("Debe tener al menos 8 caracteres");
 });
+
+test("Una contrasenia sin letra mayuscula debe ser invalida", ()=> {
+    const resultado=validarPassword("abcde123");
+    expect(resultado.esValida).toBe(false);
+});
