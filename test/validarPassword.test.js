@@ -75,3 +75,14 @@ test('una contrasenia que cumple todas las reglas debe ser valida', () => {
     expect(resultado.esValida).toBe(true);
     expect(resultado.errores).toEqual([]);
 });
+
+test('una contrasenia que viola varias reglas debe acumular todos los errores', () => {
+    const resultado = validarPassword('abc', 'usuario');
+    
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('Debe tener al menos 8 caracteres');
+    expect(resultado.errores).toContain('Debe contener al menos una mayuscula');
+    expect(resultado.errores).toContain('Debe contener al menos un numero');
+    expect(resultado.errores).toContain('Debe contener al menos un simbolo especial');
+    expect(resultado.errores.length).toBe(4);
+});
