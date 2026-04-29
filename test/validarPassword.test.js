@@ -32,3 +32,10 @@ test("Una contrasenia sin minuscula es invalida", ()=> {
     expect(resultado.esValida).toBe(false);
     expect(resultado.errores).toContain('Debe contener al menos una minuscula');
 });
+
+test("Una contrasenia sin numeros debe ser invalida", ()=> {
+    const resultado=validarPassword("AbcdefghIj!");
+    expect(resultado.esValida).toBe(false);
+    expect(resultado.errores).toContain('Debe contener al menos un numero');
+
+});
